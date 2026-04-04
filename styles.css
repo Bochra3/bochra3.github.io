@@ -474,15 +474,21 @@
       overflow: hidden;
     }
     .about-wrap::before {
-      content: '';
-      position: absolute;
-      bottom: -60px; right: -60px;
-      width: 220px; height: 220px;
-      border-radius: 50%;
-      background: var(--green-soft);
-      opacity: 0.25;
-      pointer-events: none;
-    }
+  content: '';
+  position: absolute;
+  bottom: -60px; right: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: var(--green-soft);
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;          
+}
+.about-text,
+.about-wrap > div:last-child {
+  position: relative;
+  z-index: 1;
+}
 
     .about-text p {
       color: var(--muted);
@@ -641,15 +647,31 @@
       .stats-row { grid-template-columns: repeat(3, 1fr); }
     }
     @media (max-width: 700px) {
-      .hero { grid-template-columns: 1fr; padding: 3rem 1.4rem 2rem; }
-      .hero-deco { display: none; }
-      .proj-grid-3 { grid-template-columns: 1fr; }
-      .about-wrap { grid-template-columns: 1fr; }
-      .stats-row { grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
-      nav { padding: 0.9rem 1.4rem; }
-      .nav-links { gap: 1rem; }
-      section { padding: 2.8rem 1.4rem; }
-    }
+  .hero { grid-template-columns: 1fr; padding: 3rem 1.4rem 2rem; }
+  .hero-deco { display: none; }
+  .proj-grid-3 { grid-template-columns: 1fr; }
+  .about-wrap { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+  nav {
+    padding: 0.9rem 1.4rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .nav-links { gap: 1rem; }
+  .status-pill { font-size: 10px; padding: 5px 10px; }
+  section { padding: 2.8rem 1.4rem; }
+}
+
+@media (max-width: 520px) {
+  nav { flex-wrap: wrap; row-gap: 0.4rem; }
+  .nav-logo { flex: 0 0 auto; }
+  .status-pill {
+    order: 3;         
+    width: 100%;
+    justify-content: center;
+  }
+  .nav-links { gap: 0.8rem; }
+}
     @media (max-width: 480px) {
       .stats-row { grid-template-columns: 1fr; }
       .status-pill span:last-of-type { display: none; }
